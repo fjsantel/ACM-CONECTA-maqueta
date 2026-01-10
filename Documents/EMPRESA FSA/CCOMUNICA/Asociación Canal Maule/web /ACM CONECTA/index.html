@@ -284,6 +284,17 @@
             color: var(--accent-primary);
         }
 
+        .hero-tagline {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-style: italic;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: var(--space-lg);
+            opacity: 0;
+            animation: fadeIn 1s var(--ease-out-expo) 0.4s forwards;
+        }
+
         .hero-bottom {
             display: flex;
             justify-content: space-between;
@@ -1102,9 +1113,11 @@
                     <span class="line"><span>del Maule</span></span>
                 </h1>
 
+                <p class="hero-tagline">Te informamos, te formamos, te conectamos.</p>
+
                 <div class="hero-bottom">
                     <div class="hero-description">
-                        <p>Te informamos, te formamos, te conectamos. Más de 100 años de experiencia al servicio de las familias agricultoras de la Región del Maule.</p>
+                        <p>Más de 100 años de experiencia al servicio de las familias agricultoras de la Región del Maule.</p>
                         <a href="#webserie" class="hero-cta">
                             Ver Web Serie
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
