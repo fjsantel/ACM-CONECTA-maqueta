@@ -217,22 +217,29 @@
             align-items: center;
         }
 
-        .hero-background {
+        .hero-video {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg,
-                var(--bg-primary) 0%,
-                var(--bg-secondary) 50%,
-                var(--bg-card) 100%);
+            object-fit: cover;
             z-index: 1;
+        }
+
+        .hero-video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10, 26, 26, 0.7) 0%, rgba(10, 26, 26, 0.5) 50%, rgba(10, 26, 26, 0.8) 100%);
+            z-index: 2;
         }
 
         .hero-content-text {
             position: relative;
-            z-index: 2;
+            z-index: 3;
             width: 100%;
             max-width: 1400px;
             margin: 0 auto;
@@ -1095,7 +1102,10 @@
         </div>
         
         <div class="hero-content">
-            <div class="hero-background"></div>
+            <video class="hero-video" autoplay muted loop>
+                <source src="videos/mix agua.mp4" type="video/mp4">
+            </video>
+            <div class="hero-video-overlay"></div>
             <div class="hero-content-text">
                 <h1>
                     <span class="line"><span>Gestionamos</span></span>
@@ -1239,7 +1249,7 @@
         
         <div class="stories-grid">
             <div class="story-card fade-in-up">
-                <div class="story-card-bg" style="background: linear-gradient(135deg, #2d5016 0%, #7fb069 100%);"></div>
+                <div class="story-card-bg" style="background: linear-gradient(135deg, rgba(45, 80, 22, 0.7) 0%, rgba(127, 176, 105, 0.8) 100%), url('fotos/María González.jpg'); background-size: cover; background-position: center;"></div>
                 <div class="story-overlay">
                     <span class="story-location">San Clemente</span>
                     <h3>María González</h3>
@@ -1248,7 +1258,7 @@
             </div>
             
             <div class="story-card fade-in-up stagger-1">
-                <div class="story-card-bg" style="background: linear-gradient(135deg, #8b6914 0%, #c4a35a 100%);"></div>
+                <div class="story-card-bg" style="background: linear-gradient(135deg, rgba(139, 105, 20, 0.7) 0%, rgba(196, 163, 90, 0.8) 100%), url('fotos/Pedro Muñoz.jpg'); background-size: cover; background-position: center;"></div>
                 <div class="story-overlay">
                     <span class="story-location">Talca</span>
                     <h3>Pedro Muñoz</h3>
@@ -1257,7 +1267,7 @@
             </div>
             
             <div class="story-card fade-in-up stagger-2">
-                <div class="story-card-bg" style="background: linear-gradient(135deg, #0a2540 0%, #1a5f7a 100%);"></div>
+                <div class="story-card-bg" style="background: linear-gradient(135deg, rgba(10, 37, 64, 0.7) 0%, rgba(26, 95, 122, 0.8) 100%), url('fotos/Familia Soto.jpg'); background-size: cover; background-position: center;"></div>
                 <div class="story-overlay">
                     <span class="story-location">Pelarco</span>
                     <h3>Familia Soto</h3>
