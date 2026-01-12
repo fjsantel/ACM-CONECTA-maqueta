@@ -304,12 +304,21 @@
 
         .hero-video {
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             width: 100%;
             height: 100%;
             object-fit: cover;
             z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .hero-video {
+                object-position: center center;
+                min-width: 100%;
+                min-height: 100%;
+            }
         }
 
         .hero-video-overlay {
@@ -1231,16 +1240,19 @@
             }
 
             .hero {
-                padding: 0 1.5rem;
+                padding: 0;
                 padding-top: 80px;
+                min-height: 100vh;
             }
 
             .hero-content {
-                min-height: 70vh;
+                min-height: calc(100vh - 80px);
+                border-radius: 0;
             }
 
             .hero-content-text {
                 padding: 2rem 1.5rem;
+                width: 100%;
             }
 
             /* Ajustar tamaño del título hero para mobile */
