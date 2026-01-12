@@ -1229,10 +1229,10 @@
             .mobile-menu-overlay {
                 display: block;
             }
-            
+
             .hero {
                 padding: 0 1.5rem;
-                padding-top: 100px;
+                padding-top: 80px;
             }
 
             .hero-content {
@@ -1240,47 +1240,165 @@
             }
 
             .hero-content-text {
-                padding: var(--space-md);
+                padding: 2rem 1.5rem;
             }
-            
+
+            /* Ajustar tamaño del título hero para mobile */
+            .hero h1 {
+                font-size: clamp(2.5rem, 12vw, 5rem);
+                line-height: 1.05;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-tagline {
+                font-size: clamp(1.2rem, 4vw, 1.8rem);
+                margin-bottom: 2rem;
+            }
+
+            .hero-description p {
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+
             .hero-bottom {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: var(--space-lg);
+                gap: 2rem;
+                margin-top: 2rem;
             }
-            
+
             .hero-stats {
                 flex-direction: row;
-                gap: var(--space-md);
+                gap: 1.5rem;
+                flex-wrap: wrap;
+                width: 100%;
             }
-            
+
             .stat {
                 text-align: left;
+                flex: 1;
+                min-width: calc(50% - 0.75rem);
             }
-            
+
             .stat-number {
-                font-size: 2.5rem;
+                font-size: 2rem;
+                line-height: 1.1;
+            }
+
+            .stat-label {
+                font-size: 0.75rem;
+                margin-top: 0.25rem;
             }
 
             section {
                 padding: var(--space-lg) 1.5rem;
             }
 
+            /* Web Serie Section - Mobile Fixes */
+            .webserie-player {
+                aspect-ratio: 16/9;
+                min-height: 300px;
+            }
+
+            .webserie-player-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .webserie-player-title {
+                font-size: 1.5rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .webserie-player-subtitle {
+                font-size: 0.75rem;
+                letter-spacing: 0.15em;
+            }
+
+            .play-button {
+                width: 60px;
+                height: 60px;
+                bottom: 1.5rem;
+                right: 1.5rem;
+            }
+
+            .play-button svg {
+                width: 24px;
+                height: 24px;
+            }
+
+            .webserie-info h3 {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .webserie-info p {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .episode-item {
+                padding: 1rem 0;
+                gap: 1rem;
+            }
+
+            .episode-number {
+                font-size: 1.2rem;
+                min-width: 40px;
+            }
+
+            .episode-title {
+                font-size: 0.95rem;
+            }
+
+            .episode-duration {
+                font-size: 0.8rem;
+            }
+
+            /* Pillars Section - Mobile */
+            .section-title {
+                font-size: clamp(2rem, 6vw, 3rem);
+            }
+
+            .pillar-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .pillar-number {
+                font-size: 3rem;
+            }
+
+            .pillar-card h3 {
+                font-size: 1.3rem;
+            }
+
+            .pillar-card p {
+                font-size: 0.9rem;
+            }
+
+            /* CTA Section - Mobile */
+            .cta-section h2 {
+                font-size: clamp(2rem, 6vw, 3rem);
+            }
+
+            .cta-section p {
+                font-size: 1rem;
+            }
+
             .footer-grid {
                 grid-template-columns: 1fr;
                 gap: var(--space-lg);
             }
-            
+
             .footer-bottom {
                 flex-direction: column;
                 gap: 1.5rem;
                 text-align: center;
             }
-            
+
             .scroll-indicator {
                 left: 1.5rem;
             }
-            
+
             .corner-icon {
                 display: none;
             }
