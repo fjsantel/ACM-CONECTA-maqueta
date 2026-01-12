@@ -659,6 +659,8 @@
             aspect-ratio: 16/9;
             background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
             border: 1px solid var(--border-color);
+            width: 100%;
+            max-width: 100%;
         }
 
         .webserie-player-content {
@@ -1191,6 +1193,12 @@
         @media (max-width: 1200px) {
             .webserie-grid {
                 grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .webserie-player {
+                max-width: 600px;
+                margin: 0 auto;
             }
 
             .story-card {
@@ -1307,35 +1315,49 @@
             }
 
             /* Web Serie Section - Mobile Fixes */
+            .webserie-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
             .webserie-player {
                 aspect-ratio: 16/9;
-                min-height: 300px;
+                min-height: 250px;
+                width: 100%;
+                margin: 0 auto;
+                border-radius: 16px;
             }
 
             .webserie-player-content {
-                padding: 2rem 1.5rem;
+                padding: 1.5rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
             }
 
             .webserie-player-title {
-                font-size: 1.5rem;
-                margin-bottom: 0.75rem;
+                font-size: 1.3rem;
+                margin-bottom: 0.5rem;
+                line-height: 1.2;
             }
 
             .webserie-player-subtitle {
-                font-size: 0.75rem;
-                letter-spacing: 0.15em;
+                font-size: 0.7rem;
+                letter-spacing: 0.12em;
             }
 
             .play-button {
-                width: 60px;
-                height: 60px;
-                bottom: 1.5rem;
-                right: 1.5rem;
+                width: 56px;
+                height: 56px;
+                bottom: 1rem;
+                right: 1rem;
             }
 
             .play-button svg {
-                width: 24px;
-                height: 24px;
+                width: 22px;
+                height: 22px;
             }
 
             .webserie-info h3 {
