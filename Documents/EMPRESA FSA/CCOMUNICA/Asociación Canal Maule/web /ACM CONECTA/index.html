@@ -681,32 +681,84 @@
             background: var(--bg-secondary);
         }
 
-        .stories-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
+        /* Carousel Container */
+        .stories-carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: visible;
         }
 
+        .stories-carousel-wrapper {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .stories-carousel-track {
+            display: flex;
+            gap: 1.5rem;
+            transition: transform var(--transition-medium);
+            will-change: transform;
+        }
+
+        /* Story Card */
         .story-card {
             position: relative;
+            min-width: calc(33.333% - 1rem);
             aspect-ratio: 3/4;
             border-radius: 24px;
             overflow: hidden;
             cursor: pointer;
             background: var(--bg-card);
+            opacity: 0.6;
+            transform: scale(0.95);
+            transition: all var(--transition-medium);
+            text-decoration: none;
+            display: block;
+        }
+
+        .story-card.active {
+            opacity: 1;
+            transform: scale(1);
         }
 
         .story-card-bg {
             position: absolute;
             inset: 0;
-            transition: transform var(--transition-slow);
+            transition: transform var(--transition-slow), filter var(--transition-medium);
+            filter: brightness(1);
+            z-index: 1;
         }
 
         .story-card:hover .story-card-bg {
             transform: scale(1.05);
+            filter: brightness(1.1) !important;
         }
 
+        .story-card.active .story-card-bg {
+            transform: scale(1);
+            filter: brightness(1);
+        }
+
+        /* Story Gradient Layer */
+        .story-card-gradient {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            transition: opacity var(--transition-medium);
+            pointer-events: none;
+        }
+
+        .story-card:hover .story-card-gradient {
+            opacity: 0.4 !important;
+        }
+
+        .story-card.active .story-card-gradient {
+            opacity: 1;
+        }
+
+        /* Story Overlay - Estructura mejorada */
         .story-overlay {
+            z-index: 3;
             position: absolute;
             inset: 0;
             background: linear-gradient(to top, rgba(10, 26, 26, 0.95) 0%, transparent 60%);
@@ -715,10 +767,23 @@
             justify-content: flex-end;
             padding: 2rem;
             transition: background var(--transition-medium);
+            pointer-events: none;
         }
 
         .story-card:hover .story-overlay {
-            background: linear-gradient(to top, rgba(10, 26, 26, 0.98) 0%, rgba(10, 26, 26, 0.5) 100%);
+            background: linear-gradient(to top, rgba(10, 26, 26, 0.85) 0%, rgba(10, 26, 26, 0.1) 100%) !important;
+        }
+
+        .story-card.active .story-overlay {
+            background: linear-gradient(to top, rgba(10, 26, 26, 0.95) 0%, transparent 60%);
+        }
+
+        /* Story Content - Orden visual mejorado */
+        .story-content {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            pointer-events: auto;
         }
 
         .story-location {
@@ -726,29 +791,106 @@
             text-transform: uppercase;
             letter-spacing: 0.15em;
             color: var(--accent-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .story-card h3 {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
             font-weight: 600;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.02em;
+            order: 1;
         }
 
-        .story-excerpt {
-            font-size: 0.9rem;
+        .story-name {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            line-height: 1.2;
+            order: 2;
+        }
+
+        .story-description {
+            font-size: 0.95rem;
             color: var(--text-secondary);
             line-height: 1.6;
             opacity: 0;
             transform: translateY(10px);
             transition: all var(--transition-medium);
+            order: 3;
+            margin-top: 0.5rem;
         }
 
-        .story-card:hover .story-excerpt {
+        .story-card:hover .story-description,
+        .story-card.active .story-description {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* Carousel Controls */
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 56px;
+            height: 56px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            z-index: 10;
+        }
+
+        .carousel-control:hover {
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-control.prev {
+            left: -28px;
+        }
+
+        .carousel-control.next {
+            right: -28px;
+        }
+
+        .carousel-control svg {
+            width: 24px;
+            height: 24px;
+            color: var(--text-primary);
+            transition: color var(--transition-fast);
+        }
+
+        .carousel-control:hover svg {
+            color: var(--bg-primary);
+        }
+
+        /* Carousel Indicators */
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 2rem;
+        }
+
+        .carousel-indicator {
+            width: 40px;
+            height: 4px;
+            background: var(--border-color);
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            padding: 0;
+        }
+
+        .carousel-indicator:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .carousel-indicator.active {
+            background: var(--accent-primary);
+            width: 60px;
         }
 
         /* ==================== RECURSOS SECTION ==================== */
@@ -956,13 +1098,37 @@
             .webserie-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .stories-grid {
-                grid-template-columns: repeat(2, 1fr);
+
+            .story-card {
+                min-width: calc(50% - 0.75rem);
             }
         }
 
         @media (max-width: 768px) {
+            .story-card {
+                min-width: calc(100% - 1rem);
+            }
+
+            .story-name {
+                font-size: 1.5rem;
+            }
+
+            .story-description {
+                font-size: 0.9rem;
+            }
+
+            .carousel-control {
+                width: 44px;
+                height: 44px;
+            }
+
+            .carousel-control.prev {
+                left: 0;
+            }
+
+            .carousel-control.next {
+                right: 0;
+            }
             header {
                 padding: 1rem 1.5rem;
             }
@@ -1002,15 +1168,11 @@
             .stat-number {
                 font-size: 2.5rem;
             }
-            
+
             section {
                 padding: var(--space-lg) 1.5rem;
             }
-            
-            .stories-grid {
-                grid-template-columns: 1fr;
-            }
-            
+
             .footer-grid {
                 grid-template-columns: 1fr;
                 gap: var(--space-lg);
@@ -1246,35 +1408,9 @@
             <span class="section-label">Historias de Valor</span>
             <h2 class="section-title">Las voces del Maule</h2>
         </div>
-        
-        <div class="stories-grid">
-            <div class="story-card fade-in-up">
-                <div class="story-card-bg" style="background: linear-gradient(135deg, rgba(45, 80, 22, 0.7) 0%, rgba(127, 176, 105, 0.8) 100%), url('fotos/María González.jpg?v=3'); background-size: cover; background-position: center;"></div>
-                <div class="story-overlay">
-                    <span class="story-location">San Clemente</span>
-                    <h3>María González</h3>
-                    <p class="story-excerpt">Primera presidenta de su comunidad de regantes. Hoy lidera a 50 familias en la gestión eficiente del agua.</p>
-                </div>
-            </div>
-            
-            <div class="story-card fade-in-up stagger-1">
-                <div class="story-card-bg" style="background: linear-gradient(135deg, rgba(139, 105, 20, 0.7) 0%, rgba(196, 163, 90, 0.8) 100%), url('fotos/Pedro Muñoz.jpg?v=3'); background-size: cover; background-position: center;"></div>
-                <div class="story-overlay">
-                    <span class="story-location">Talca</span>
-                    <h3>Pedro Muñoz</h3>
-                    <p class="story-excerpt">A sus 72 años, adoptó el riego por goteo y duplicó la producción de sus viñedos familiares.</p>
-                </div>
-            </div>
-            
-            <div class="story-card fade-in-up stagger-2">
-                <div class="story-card-bg" style="background: linear-gradient(135deg, rgba(10, 37, 64, 0.7) 0%, rgba(26, 95, 122, 0.8) 100%), url('fotos/Familia Soto.jpg'); background-size: cover; background-position: center;"></div>
-                <div class="story-overlay">
-                    <span class="story-location">Pelarco</span>
-                    <h3>Familia Soto</h3>
-                    <p class="story-excerpt">Tres generaciones trabajando la tierra. Hoy sus nietos lideran la innovación con tecnología de riego inteligente.</p>
-                </div>
-            </div>
-        </div>
+
+        <!-- El carrusel se generará dinámicamente aquí -->
+        <div class="stories-carousel-container fade-in-up"></div>
     </section>
 
     <!-- Recursos Section -->
@@ -1550,5 +1686,9 @@
             });
         });
     </script>
+
+    <!-- Historias Cards - Sistema de Carrusel -->
+    <script src="historias-cards-data.js"></script>
+    <script src="historias-cards-carousel.js"></script>
 </body>
 </html>
